@@ -1,0 +1,42 @@
+{"q": "who do I ask to get added to the engineers group so I can use the subscriptions?", "gold": "1.1"}
+{"q": "can a new hire change things in prod during their first three months?", "gold": "1.1"}
+{"q": "is it okay for two pipelines to share the same identity?", "gold": "1.1"}
+{"q": "which java and python versions do I need on my laptop?", "gold": "1.2"}
+{"q": "what does the bootstrap script do?", "gold": "1.2"}
+{"q": "how many approvals before my PR can merge?", "gold": "1.3"}
+{"q": "how big should a pull request be?", "gold": "1.3"}
+{"q": "can I merge late on Friday?", "gold": "1.3"}
+{"q": "what is the difference between the raw layer and the published layer?", "gold": "2.1"}
+{"q": "where do I describe the source and target of a new integration?", "gold": "2.1"}
+{"q": "which load should I use for a tiny table of job codes?", "gold": "2.2.1"}
+{"q": "the source can't tell me what changed and the data is small, how do I load it?", "gold": "2.2.1"}
+{"q": "how do I avoid missing rows that show up late?", "gold": "2.2.2"}
+{"q": "where is the watermark saved?", "gold": "2.2.2"}
+{"q": "upsert by business key since last run", "gold": "2.2.2"}
+{"q": "source sends a full snapshot for each pay period without timestamps", "gold": "2.2.3"}
+{"q": "how do I replace one partition of data?", "gold": "2.2.3"}
+{"q": "the business added a new department name, do I need a release?", "gold": "2.3"}
+{"q": "where are country code translations kept?", "gold": "2.3"}
+{"q": "how do we encrypt files we send to a vendor?", "gold": "2.4"}
+{"q": "vendor gave us a new public key, what now?", "gold": "2.4"}
+{"q": "what are the canonical events?", "gold": "3.1"}
+{"q": "why do consumers not subscribe to raw source events?", "gold": "3.1"}
+{"q": "what should the partition key be for worker events?", "gold": "3.2"}
+{"q": "when are offsets committed?", "gold": "3.2"}
+{"q": "how many times do we retry a timeout?", "gold": "3.3"}
+{"q": "what happens to an event that fails validation?", "gold": "3.3"}
+{"q": "who looks at the dead letter queue?", "gold": "3.3"}
+{"q": "how do we stop duplicate records when an event is replayed?", "gold": "3.4"}
+{"q": "is it safe to process the same message twice?", "gold": "3.4"}
+{"q": "where do alerts get sent?", "gold": "4.1"}
+{"q": "should I page someone for a non customer facing failure?", "gold": "4.1"}
+{"q": "when does the on-call week start?", "gold": "4.2"}
+{"q": "how fast must I acknowledge a page?", "gold": "4.2"}
+{"q": "payroll data might be late, what are the first things to check?", "gold": "4.3.1"}
+{"q": "how do I figure out if the vendor is the problem?", "gold": "4.3.1"}
+{"q": "how soon is the postmortem due?", "gold": "4.3.2"}
+{"q": "what goes into a postmortem?", "gold": "4.3.2"}
+{"q": "how often do service principal secrets expire?", "gold": "4.4"}
+{"q": "a secret expires next month, what do I do?", "gold": "4.4"}
+{"q": "which tags does every resource need?", "gold": "4.5"}
+{"q": "when do budget alerts fire?", "gold": "4.5"}
