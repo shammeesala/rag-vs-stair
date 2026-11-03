@@ -39,7 +39,15 @@ class Section:
         TODO: walk up through .parent until you reach the root (the node whose parent is None),
         collecting titles, then reverse the list.
         """
-        raise NotImplementedError("Step 1: Section.path")
+        titles = []
+        current = self
+
+        while current.parent is not None:
+            titles.append(current.title)
+            current = current.parent
+
+        return titles[::-1]
+        # raise NotImplementedError("Step 1: Section.path")
 
 
 def parse_markdown(md: str) -> Section:
@@ -55,17 +63,102 @@ def parse_markdown(md: str) -> Section:
       the .text of the section currently on top of the stack.
     - Raise ValueError if the document has no headings.
     """
-    raise NotImplementedError("Step 1: parse_markdown")
+
+    root = None
+    stack = []
+
+    # a list fo strings 
+    for line in md.splitlines():
+        line = line.strip()
+
+        # Check whether this line is a heading
+        match = HEADING.match(line)
+
+        if match:
+            level = len(match.group(1))  # Number of # symbols
+            section_id = match.group(2) or ""
+            title = match.group(3)
+
+            section = Section(
+                id=section_id,
+                title=title,
+                level=level
+            )
+
+            # The first heading becomes the root
+            if root is None:
+                root = section
+                stack.append(section)
+                continue
+
+            # Remove headings at the same or deeper level
+            while stack and stack[-1].level >= level:
+                stack.pop()
+
+            if not stack:
+                raise ValueError("Heading has no parent")
+
+            parent = stack[-1]
+            section.parent = parent
+            parent.children.append(section)
+
+            stack.append(section) # New section becomes current
+
+        # Add non-empty body text to the current section
+        elif line and stack:
+            # Add body text to the current section
+            current = stack[-1]
+
+            if current.text:
+                current.text += " "
+
+            current.text += line
+
+    if root is None:
+        raise ValueError("Document has no headings")
+
+    return root
+
+
+    # raise NotImplementedError("Step 1: parse_markdown")
 
 
 def leaves(root: Section) -> list[Section]:
     """All sections without children, in document order (recursion is the easy way)."""
-    raise NotImplementedError("Step 1: leaves")
+
+    """Return all leaf sections in document order."""
+
+    result = []
+
+    def visit(section):
+        if not section.children:
+            result.append(section)  # Found a leaf
+            return
+
+        for child in section.children:
+            visit(child)  # Explore children in order
+
+    visit(root)
+    return result
+
+    # raise NotImplementedError("Step 1: leaves")
 
 
 def find(root: Section, section_id: str) -> Section:
     """The section with this id anywhere in the tree. Raise KeyError if it doesn't exist."""
-    raise NotImplementedError("Step 1: find")
+
+    if root.id == section_id:
+        return root  # Found the section
+
+    for child in root.children:
+        try:
+            return find(child, section_id)  # Search child subtree
+        except KeyError:
+            continue  # Not found here, try next child
+
+    raise KeyError(section_id)
+
+    #raise NotImplementedError("Step 1: find")
 
 
 def load(path: str) -> Section:
